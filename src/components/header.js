@@ -1,43 +1,48 @@
 import React, { Component } from "react";
-import { Nav, Image, Form } from "react-bootstrap";
+import { Navbar, Button } from "react-bootstrap";
+import { Constants } from "./../config/constants";
+import Signup from "./../routes/signup";
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 class Header extends Component {
   render() {
     return (
-      <Nav
+      <Navbar
         style={{
-          height: 60,
-          position: "fixed",
-          zIndex: 9999,
-          left: 0,
-          right: 0,
-          top: 0,
-          alignItems: "center",
-          paddingLeft: 50
+          backgroundColor: Constants.BASE_COLOR,
+          width: "100%",
+          border: 0
         }}
-        onSelect={selectedKey => alert(`selected ${selectedKey}`)}
+        variant="dark"
+        sticky="top"
       >
-        <Nav.Item>
-          <Nav.Link
-            href="/home"
-            style={{ color: "grey", fontWeight: "bold", fontSize: 20 }}
+        <Link to="/">
+          <Navbar.Brand
+            href="#home"
+            style={{ fontWeight: "bold", fontStyle: "italic" }}
           >
-            Remote.ly
-          </Nav.Link>
-        </Nav.Item>
-        <Nav.Item>
-          <Nav.Link
-            href="/home"
-            style={{ color: "grey", fontWeight: "bold", fontSize: 16 }}
-          >
-            FIND WORK
-          </Nav.Link>
-        </Nav.Item>
-        <Nav.Item>
-          <Form.Group controlId="formBasicEmail" style={{ width: 300 }}>
-            <Form.Control type="email" placeholder="Search Job..." />
-          </Form.Group>
-        </Nav.Item>
-      </Nav>
+            Remotely
+          </Navbar.Brand>
+        </Link>
+        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        <Navbar.Collapse className="justify-content-end">
+          <Link to="/post">
+            <Button variant="light" style={{ marginRight: 50 }}>
+              Post Job
+            </Button>
+          </Link>
+
+          <Navbar.Text style={{ marginRight: 50 }}>
+            <Link to="/login" style={{ fontWeight: "bold", fontSize: 15 }}>
+              LOG IN
+            </Link>
+          </Navbar.Text>
+          <Navbar.Text>
+            <Link to="/signup" style={{ fontWeight: "bold", fontSize: 15 }}>
+              SIGN UP
+            </Link>
+          </Navbar.Text>
+        </Navbar.Collapse>
+      </Navbar>
     );
   }
 }
