@@ -1,26 +1,45 @@
-import React, { Component } from 'react';
-import {Nav,Image} from 'react-bootstrap';
+import React, { Component } from "react";
+import { Nav, Image, Form } from "react-bootstrap";
 class Header extends Component {
-    render() {
-      return (
-        <Nav
-        style={{backgroundColor:'#000',height:60,position:'fixed',zIndex:9999,left:0,right:0,top:0}}
-        onSelect={selectedKey => alert(`selected ${selectedKey}`)}>
-        <Nav.Item style={{padding:5}}>
-          <Nav.Link href="/home"><Image src={require('./../logo-sm.png')} /></Nav.Link>
+  render() {
+    return (
+      <Nav
+        style={{
+          height: 60,
+          position: "fixed",
+          zIndex: 9999,
+          left: 0,
+          right: 0,
+          top: 0,
+          alignItems: "center",
+          paddingLeft: 50
+        }}
+        onSelect={selectedKey => alert(`selected ${selectedKey}`)}
+      >
+        <Nav.Item>
+          <Nav.Link
+            href="/home"
+            style={{ color: "grey", fontWeight: "bold", fontSize: 20 }}
+          >
+            Remote.ly
+          </Nav.Link>
         </Nav.Item>
-        <Nav.Item style={{padding:5}}>
-          <Nav.Link eventKey="exchange" style={{color:'#fff'}}><Image src={require('./../images/exchange_ic.png')} /> Exchange</Nav.Link>
+        <Nav.Item>
+          <Nav.Link
+            href="/home"
+            style={{ color: "grey", fontWeight: "bold", fontSize: 16 }}
+          >
+            FIND WORK
+          </Nav.Link>
         </Nav.Item>
-        <Nav.Item style={{padding:5}}>
-          <Nav.Link eventKey="otc" style={{color:'#fff'}}><Image src={require('./../images/otc_ic.png')} /> OTC</Nav.Link>
-        </Nav.Item>
-        <Nav.Item style={{padding:5}}>
-          <Nav.Link eventKey="dashboard" style={{color:'#fff'}}><Image src={require('./../images/dashboard_ic.png')} /> Dashbaord</Nav.Link>
+        <Nav.Item>
+          <Form.Group controlId="formBasicEmail" style={{ width: 300 }}>
+            <Form.Control type="email" placeholder="Search Job..." />
+          </Form.Group>
         </Nav.Item>
       </Nav>
-      );
-    }
+    );
+  }
 }
 
 export default Header;
