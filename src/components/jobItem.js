@@ -14,10 +14,12 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars, faCheckCircle } from "@fortawesome/free-solid-svg-icons";
 import { Constants } from "./../config/constants";
 import { styles } from "./../assets/styles";
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
 export default class JobItem extends Component {
   render() {
     var {
+      jobId,
       companyName,
       logoPath,
       daysAgo,
@@ -36,7 +38,9 @@ export default class JobItem extends Component {
         </Col>
         <Col xs={8}>
           <div style={{ color: "#000", font: "bold", fontSize: 20 }}>
-            {companyName}
+            <Link to={{ pathname: "/jobView", search: "?jobId=" + jobId }}>
+              {companyName}{" "}
+            </Link>
             {verified && (
               <FontAwesomeIcon
                 style={{ marginLeft: 10 }}

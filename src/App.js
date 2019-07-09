@@ -21,6 +21,7 @@ import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
 import Signup from "./routes/signup";
 import Login from "./routes/login";
 import PostJob from "./routes/postJob";
+import JobView from "./routes/jobView";
 
 class App extends Component {
   constructor() {
@@ -36,6 +37,7 @@ class App extends Component {
           <Route exact path="/signup" component={Signup} />
           <Route exact path="/login" component={Login} />
           <Route exact path="/post" component={PostJob} />
+          <Route exact path="/jobView" component={JobView} />
         </Switch>
       </Router>
     );

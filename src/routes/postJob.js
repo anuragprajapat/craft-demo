@@ -16,6 +16,9 @@ import Header from "./../components/header";
 import { Constants } from "./../config/constants";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import { Editor } from "react-draft-wysiwyg";
+import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
+import { EditorState } from "draft-js";
 
 // import { styles } from "./../assets/styles";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
@@ -24,7 +27,8 @@ class PostJob extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      startDate: new Date()
+      startDate: new Date(),
+      editorState: EditorState.createEmpty()
     };
     this.handleChange = this.handleChange.bind(this);
   }
@@ -37,7 +41,14 @@ class PostJob extends Component {
     });
   }
 
+  onEditorStateChange = editorState => {
+    this.setState({
+      editorState
+    });
+  };
+
   render() {
+    const { editorState } = this.state;
     return (
       <Container fluid="true" style={{ flex: 1, border: 0 }}>
         <Header />
@@ -74,7 +85,12 @@ class PostJob extends Component {
                       Start with a bit about yourself or your business, and
                       include an overview of what you need done.
                     </p>
-                    <Form.Control as="textarea" rows="6" />
+                    <Editor
+                      editorState={editorState}
+                      wrapperClassName="demo-wrapper"
+                      editorClassName="demo-editor"
+                      onEditorStateChange={this.onEditorStateChange}
+                    />
                   </Form.Group>
                   <p style={{ fontWeight: "bold" }}>Budget</p>
                   <InputGroup className="mb-3" style={{ width: 200 }}>
